@@ -4,18 +4,35 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Banana Click-O-Matic" Height="450" Width="800">
+        Title="Banana Click-O-Matic" Height="300" Width="400">
     <Window.Resources>
         <ResourceDictionary Source="Themes.xaml"/>
     </Window.Resources>
-    <Grid>
-        <Label Content="Clicks per Second:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-        <TextBox Name="ClicksPerSecondTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,10,0,0" Width="90" Text="20"/>
-        <Button Name="StartButton" Content="Start" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0" Width="75" Click="StartButton_Click"/>
-        <Button Name="StopButton" Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,50,0,0" Width="75" Click="StopButton_Click" IsEnabled="False"/>
-        <Label Name="StatusLabel" Content="Status: Stopped" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0"/>
+    <Grid Background="{StaticResource PrimaryBrush}" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <Button Name="DisclaimerButton" Content="Disclaimer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,130,0,0" Width="100" Click="DisclaimerButton_Click"/>
-        <Button Name="SupportButton" Content="Support the Developer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,170,0,0" Width="180" Click="SupportButton_Click"/>
+        <Label Content="Clicks per Second:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="5"/>
+        <TextBox Name="ClicksPerSecondTextBox" Grid.Row="0" Grid.Column="1" Width="120" Text="20" Margin="5"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button Name="StartButton" Content="Start" Width="100" Click="StartButton_Click" Margin="10"/>
+            <Button Name="StopButton" Content="Stop" Width="100" Click="StopButton_Click" IsEnabled="False" Margin="10"/>
+        </StackPanel>
+
+        <Label Name="StatusLabel" Content="Status: Stopped" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="10"/>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Margin="10">
+            <Button Name="DisclaimerButton" Content="Disclaimer" Width="200" Click="DisclaimerButton_Click" Margin="5"/>
+            <Button Name="SupportButton" Content="Support the Developer" Width="200" Click="SupportButton_Click" Margin="5"/>
+        </StackPanel>
     </Grid>
 </Window>

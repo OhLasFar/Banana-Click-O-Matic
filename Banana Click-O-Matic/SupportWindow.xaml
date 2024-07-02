@@ -5,8 +5,8 @@
     <Window.Resources>
         <ResourceDictionary Source="Themes.xaml"/>
     </Window.Resources>
-    <Grid>
-        <TextBlock TextWrapping="Wrap" Margin="10" TextAlignment="Left">
+    <Grid Background="{StaticResource PrimaryBrush}">
+        <TextBlock TextWrapping="Wrap" Margin="10" TextAlignment="Left" Foreground="{StaticResource TextBrush}">
             <Run Text="Support the Developer:" FontWeight="Bold" FontSize="14"/>
             <LineBreak/>
             <Run Text="Follow me on Twitter/X: "/>
