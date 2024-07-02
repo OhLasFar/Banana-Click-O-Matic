@@ -71,6 +71,7 @@ namespace Banana_Click_O_Matic
                 {
                     _interval = 1000 / clicksPerSecond;
                     StartButton.IsEnabled = false;
+                    StopButton.IsEnabled = true;
                     StatusLabel.Content = "Status: Clicking";
                     Logger.TraceInformation($"Started clicking at {clicksPerSecond} clicks per second.");
                     _cts = new CancellationTokenSource();
@@ -119,6 +120,7 @@ namespace Banana_Click_O_Matic
                 _cts?.Cancel();
                 _timer?.Change(Timeout.Infinite, Timeout.Infinite);
                 StartButton.IsEnabled = true;
+                StopButton.IsEnabled = false;
                 StatusLabel.Content = "Status: Stopped";
                 Logger.TraceInformation("Stopped clicking.");
                 _stopwatch.Stop();
