@@ -1,18 +1,24 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using WindowsInput;
+using Gma.System.MouseKeyHook;
+using System.Windows.Forms;
 
 namespace Banana_Click_O_Matic
 {
     public partial class MainWindow : Window
     {
         private static readonly TraceSource Logger = new TraceSource("AutoClicker");
-        private Timer _timer;
+        private System.Threading.Timer _timer;
         private InputSimulator _inputSimulator;
+        private IKeyboardMouseEvents _globalHook;
         private int _interval;
         private Stopwatch _stopwatch;
+        private bool _ignoreNextClick;
+        private CancellationTokenSource _cts;
 
         public MainWindow()
         {
@@ -20,6 +26,7 @@ namespace Banana_Click_O_Matic
             _inputSimulator = new InputSimulator();
             _stopwatch = new Stopwatch();
             ConfigureLogging();
+            ConfigureGlobalHook();
             Logger.TraceInformation("Application started.");
         }
 
@@ -35,21 +42,44 @@ namespace Banana_Click_O_Matic
             Logger.TraceInformation("Logging configured.");
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        private void ConfigureGlobalHook()
+        {
+            _globalHook = Hook.GlobalEvents();
+            _globalHook.MouseDownExt += GlobalHookMouseDownExt;
+        }
+
+        private void GlobalHookMouseDownExt(object sender, MouseEventExtArgs e)
+        {
+            if (_ignoreNextClick)
+            {
+                _ignoreNextClick = false;
+                return;
+            }
+
+            if (e.Button == MouseButtons.Left || e.Button == MouseButtons.Right)
+            {
+                StopAutoClicker();
+                Logger.TraceInformation($"Auto-clicker stopped due to {e.Button} mouse button click.");
+            }
+        }
+
+        private async void StartButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 if (int.TryParse(ClicksPerSecondTextBox.Text, out int clicksPerSecond) && clicksPerSecond > 0)
                 {
                     _interval = 1000 / clicksPerSecond;
-                    _timer = new Timer(TimerCallback, null, 0, _interval);
+                    StartButton.IsEnabled = false;
                     StatusLabel.Content = "Status: Clicking";
                     Logger.TraceInformation($"Started clicking at {clicksPerSecond} clicks per second.");
+                    _cts = new CancellationTokenSource();
                     _stopwatch.Start();
+                    await StartAutoClicker(_cts.Token);
                 }
                 else
                 {
-                    MessageBox.Show("Please enter a valid number of clicks per second.");
+                    System.Windows.MessageBox.Show("Please enter a valid number of clicks per second.");
                     Logger.TraceEvent(TraceEventType.Warning, 0, "Invalid clicks per second input.");
                 }
             }
@@ -59,11 +89,36 @@ namespace Banana_Click_O_Matic
             }
         }
 
+        private async Task StartAutoClicker(CancellationToken token)
+        {
+            await Task.Run(() =>
+            {
+                try
+                {
+                    using (_timer = new System.Threading.Timer(TimerCallback, null, 0, _interval))
+                    {
+                        token.WaitHandle.WaitOne();
+                    }
+                }
+                catch (OperationCanceledException)
+                {
+                    Logger.TraceInformation("Auto-clicker operation cancelled.");
+                }
+            });
+        }
+
         private void StopButton_Click(object sender, RoutedEventArgs e)
+        {
+            StopAutoClicker();
+        }
+
+        private void StopAutoClicker()
         {
             try
             {
+                _cts?.Cancel();
                 _timer?.Change(Timeout.Infinite, Timeout.Infinite);
+                StartButton.IsEnabled = true;
                 StatusLabel.Content = "Status: Stopped";
                 Logger.TraceInformation("Stopped clicking.");
                 _stopwatch.Stop();
@@ -79,6 +134,7 @@ namespace Banana_Click_O_Matic
         {
             try
             {
+                _ignoreNextClick = true;
                 _inputSimulator.Mouse.LeftButtonClick();
                 Logger.TraceEvent(TraceEventType.Verbose, 0, $"Mouse click performed at {_stopwatch.ElapsedMilliseconds} ms");
                 _stopwatch.Restart();
@@ -87,6 +143,13 @@ namespace Banana_Click_O_Matic
             {
                 Logger.TraceEvent(TraceEventType.Error, 0, $"Error during mouse click: {ex.Message}");
             }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            _globalHook.MouseDownExt -= GlobalHookMouseDownExt;
+            _globalHook.Dispose();
+            base.OnClosed(e);
         }
     }
 }

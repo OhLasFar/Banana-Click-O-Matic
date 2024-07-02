@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <PackageReference Include="InputSimulatorPlus" Version="1.0.7" />
+    <PackageReference Include="MouseKeyHook" Version="5.7.1" />
   </ItemGroup>
 
 </Project>
