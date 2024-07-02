@@ -1,0 +1,52 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Define colors -->
+    <Color x:Key="PrimaryColor">#333333</Color>
+    <Color x:Key="SecondaryColor">#FFFF00</Color>
+    <Color x:Key="TextColor">#FFFFFF</Color>
+
+    <!-- Define brushes -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+    <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}"/>
+    <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
+
+    <!-- Define styles -->
+    <Style TargetType="Window">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+    </Style>
+
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SecondaryBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="10"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <Style TargetType="TextBox">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SecondaryBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="Padding" Value="10"/>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+        <Setter Property="Margin" Value="5"/>
+    </Style>
+
+    <Style TargetType="Hyperlink">
+        <Setter Property="Foreground" Value="{StaticResource SecondaryBrush}"/>
+    </Style>
+</ResourceDictionary>

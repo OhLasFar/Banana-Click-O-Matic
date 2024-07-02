@@ -1,0 +1,24 @@
+﻿<Window x:Class="Banana_Click_O_Matic.SupportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Support the Developer" Height="300" Width="400">
+    <Window.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+    </Window.Resources>
+    <Grid>
+        <TextBlock TextWrapping="Wrap" Margin="10" TextAlignment="Left">
+            <Run Text="Support the Developer:" FontWeight="Bold" FontSize="14"/>
+            <LineBreak/>
+            <Run Text="Follow me on Twitter/X: "/>
+            <Hyperlink NavigateUri="https://twitter.com/OhLasFar" RequestNavigate="Hyperlink_RequestNavigate">@OhLasFar</Hyperlink>
+            <LineBreak/>
+            <Run Text="Steam Trade Link: "/>
+            <Hyperlink NavigateUri="https://steamcommunity.com/tradeoffer/new/?partner=325412381&amp;token=Ictamh5K" RequestNavigate="Hyperlink_RequestNavigate">Trade Link</Hyperlink>
+            <LineBreak/>
+            <Run Text="Twitch: "/>
+            <Hyperlink NavigateUri="https://www.twitch.tv/LasFar" RequestNavigate="Hyperlink_RequestNavigate">LasFar</Hyperlink>
+            <LineBreak/>
+            <Run Text="Donate crypto: XXXXXXXX"/>
+        </TextBlock>
+    </Grid>
+</Window>

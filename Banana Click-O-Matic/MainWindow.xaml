@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Banana_Click_O_Matic"
         mc:Ignorable="d"
         Title="Banana Click-O-Matic" Height="450" Width="800">
+    <Window.Resources>
+        <ResourceDictionary Source="Themes.xaml"/>
+    </Window.Resources>
     <Grid>
         <Label Content="Clicks per Second:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
         <TextBox Name="ClicksPerSecondTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,10,0,0" Width="90" Text="20"/>
@@ -13,29 +15,7 @@
         <Button Name="StopButton" Content="Stop" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,50,0,0" Width="75" Click="StopButton_Click" IsEnabled="False"/>
         <Label Name="StatusLabel" Content="Status: Stopped" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0"/>
 
-        <TextBlock TextWrapping="Wrap" Margin="10,130,10,0" VerticalAlignment="Top" TextAlignment="Left">
-            <Run Text="Support the Developer:" FontWeight="Bold" FontSize="14"/>
-            <LineBreak/>
-            <Run Text="Follow me on Twitter/X: "/>
-            <Hyperlink NavigateUri="https://twitter.com/OhLasFar" RequestNavigate="Hyperlink_RequestNavigate">@OhLasFar</Hyperlink>
-            <LineBreak/>
-            <Run Text="Steam Trade Link: "/>
-            <Hyperlink NavigateUri="https://steamcommunity.com/tradeoffer/new/?partner=325412381&amp;token=Ictamh5K" RequestNavigate="Hyperlink_RequestNavigate">Trade Link</Hyperlink>
-            <LineBreak/>
-            <Run Text="Twitch: "/>
-            <Hyperlink NavigateUri="https://www.twitch.tv/LasFar" RequestNavigate="Hyperlink_RequestNavigate">LasFar</Hyperlink>
-            <LineBreak/>
-            <Run Text="Donate crypto: XXXXXXXX"/>
-            <LineBreak/>
-            <Run Text=""/>
-            <LineBreak/>
-            <Run Text="Disclaimer:" FontWeight="Bold" FontSize="14"/>
-            <LineBreak/>
-            <Run Text="This app is made entirely for the game Banana."/>
-            <LineBreak/>
-            <Run Text="Use at your own risk. The developer is not responsible for any misuse or issues that arise from using this app."/>
-            <LineBreak/>
-            <Run Text="Note: The game Banana is CPS locked at 20 CPS, so setting CPS above 20 will not be beneficial and may result in your CPS being reduced."/>
-        </TextBlock>
+        <Button Name="DisclaimerButton" Content="Disclaimer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,130,0,0" Width="100" Click="DisclaimerButton_Click"/>
+        <Button Name="SupportButton" Content="Support the Developer" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,170,0,0" Width="180" Click="SupportButton_Click"/>
     </Grid>
 </Window>

@@ -160,5 +160,17 @@ namespace Banana_Click_O_Matic
             Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
             e.Handled = true;
         }
+
+        private void DisclaimerButton_Click(object sender, RoutedEventArgs e)
+        {
+            DisclaimerWindow disclaimerWindow = new DisclaimerWindow();
+            disclaimerWindow.Show();
+        }
+
+        private void SupportButton_Click(object sender, RoutedEventArgs e)
+        {
+            SupportWindow supportWindow = new SupportWindow();
+            supportWindow.Show();
+        }
     }
 }
