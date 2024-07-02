@@ -61,7 +61,16 @@ Banana Click-O-Matic is a high-performance auto clicker application designed for
 
 ## Contributing
 
-Contributions are welcome! Please fork the repository and create a pull request with your changes.
+Contributions are welcome! If you want to help with the project, feel free to do so. Proper credits will be given. Please fork the repository and create a pull request with your changes.
+
+## Support
+
+If you like this project and want to support its development, consider making a donation. Your support is greatly appreciated!
+
+- Follow me on Twitter/X: [@OhLasFar](https://twitter.com/OhLasFar)
+- Steam Trade Link: [Trade Link](https://steamcommunity.com/tradeoffer/new/?partner=325412381&token=Ictamh5K)
+- Twitch: [LasFar](https://www.twitch.tv/LasFar)
+- Donate crypto: `TDAsZuzqhS64kCqZwphmCQqW7MrMNdAGb6` (USDT Tron(TRC20))
 
 ## License
 
@@ -73,5 +82,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Inspired by various open-source auto clicker projects available on GitHub.
 
 ---
+
+**Note**: Things may change a bit, and this README will be updated accordingly.
 
 Feel free to use and modify this application as needed. For any bugs or feature requests, please open an issue in the GitHub repository.
